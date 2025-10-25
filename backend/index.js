@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose';
 import cors from 'cors'
 import clientRoute from './routes/client.route.js'
+import 'dotenv/config';
 
 const app = express()
 app.use(express.json())
@@ -13,11 +14,13 @@ app.get('/', (req, res) => {
     res.json({message: 'Welcome to Clients API'});
 })
 
-mongoose.connect('mongodb+srv://admin:admin@zadanie1db.owbdljg.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Zadanie1DB')
+const PORT = process.env.PORT || 3000;
+
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("Connected to db");
-    app.listen(process.env.PORT || 3000, () => {
-        console.log('Server is running on port 3000');
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
     })
 })
 .catch(() => {
