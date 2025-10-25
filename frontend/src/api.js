@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/clients";
+const API_URL = "https://test-1nr2.onrender.com/api/clients";
 
 export const getClients = () => axios.get(API_URL);
 export const createClient = (client) => axios.post(API_URL, client);
